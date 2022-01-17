@@ -1,3 +1,4 @@
+from prettytable import PrettyTable
 from selenium.common.exceptions import *
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
@@ -8,6 +9,8 @@ class LeagueTable:
         self.tables = tables
 
     def select_table_head(self):
+        # This method is not really necessary if you know the table heads; See the method below where we have 
+        # curated the list of table headers. 
         abbreviated = ['More', 'Pos', 'Pl', 'W', 'D', 'L', 'Pts']
         headers = []
         selected_table = self.tables.find_element(
@@ -24,8 +27,9 @@ class LeagueTable:
             if elements_with_div:
                 for item in elements_with_div:
                     # print(item.get_attribute('innerHTML'))
-                    if item.get_attribute('innerHTML') in abbreviated:
+                    if item.get_attribute('innerHTML') in abbreviated or item.get_attribute('innerHMTL') == 'More':
                         continue
+                    
                     else:
                         element = item.get_attribute('innerHTML')
                         headers.append(element)
@@ -41,37 +45,49 @@ class LeagueTable:
         return headers
 
     def select_table_body(self):
-        header =  self.select_table_head()
+        header = ['Position', 'Club', 'Played', 'Won', 'Drawn', 'Lost', 'GF','GA','GD', 'Points', 'Form','Next Game']
+
         body = self.tables.find_element(
             By.CSS_SELECTOR, 'tbody[class="tableBodyContainer isPL"]')
         rows = body.find_elements(
             By.CSS_SELECTOR, 'tr[data-filtered-entry-size="20"]')
-
-        td_list = []
+        
+        collection_list =[]
+        td_dict = []
         for row in rows:
             td = row.find_elements(By.TAG_NAME, 'td')
-            td_D = []
-            for j in header:
-                for data in td:
-                    if data.text == '':
-                        continue
-                    elif '\n' in data.text:
-                        new_data = data.text.split('\n')
-                        form = []
-                        for i in new_data:
-                            form.append(i)
-                        td_D.append(form)
+            td_D = {}
+            collection =[]
+            header_index = 0
+            for data in td:
+                if data.text == '':
+                    continue
+                elif '\n' in data.text:
+                    new_data = data.text.split('\n')
+                    form = []
+                    for i in new_data:
+                        form.append(i)
+                    collection.append(form)
                     
-                    else:
-                        td_D.append(data.text)
-                        
-            td_list.append(td_D)
-            
-            
-            # Todos
-            #! Optimize the code by storing data in dictionary format. 
-            # Create a dictionary for table values and headers
-            # Save data on csv
-            # Scrape more than one league, eg laliga, lique, and
+                    td_D[header[header_index]] = form
+                    header_index+=1
+                else:
+                    collection.append(data.text)    
+                    td_D[header[header_index]] = data.text 
+                    header_index+=1   
+            td_dict.append(td_D)
+            collection_list.append(collection)
+        return td_dict, collection_list
         
-    
+    @staticmethod
+    def print_pretty_table(collections):
+        tab = PrettyTable()
+        tab.field_names = ['Position', 'Club', 'Played', 'Won', 'Drawn',
+                                'Lost', 'GF', 'GA', 'GD', 'Points', 'Form', 'Next Game']
+        tab.add_rows(collections)
+        print(tab)
+        # Todos ---> DONE!!!
+        #! Optimize the code by storing data in dictionary format.
+        # Create a dictionary for table values and headers
+        # Save data on csv
+        # Scrape more than one league, eg laliga, lique, and

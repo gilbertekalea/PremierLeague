@@ -150,6 +150,10 @@ class SoccerLeagues(webdriver.Chrome):
     def league_table(self):
         table = LeagueTable(tables=self)
         # table.select_table_head()
-        table.select_table_body()
+        data = table.select_table_body()
+        LeagueTable.print_pretty_table(data[1])
+        
+        
+        
         
         
