@@ -1,15 +1,18 @@
-import leaguebot.constants as const
-from leaguebot.table import LeagueTable
-import os,time
+import premier_league.constants as const
+from premier_league.table import LeagueTable
+
+import os
 from selenium import webdriver
 from selenium.common.exceptions import *
 from selenium.webdriver.common.by import By
 
 # This file contains method we will use to craw through the top leagues tables.
 
-class SoccerLeagues(webdriver.Chrome):
-
-    def __init__(self,  driver_path=r"C:\Users\gilbe\Desktop\SeleniumDrivers", teardown=False):
+class PremierLeague(webdriver.Chrome):
+    
+    def __init__(
+        self, driver_path=r"C:\Users\gilbe\Desktop\SeleniumDrivers", teardown=True
+    ):
         self.driver_path = driver_path
         self.teardown = teardown
         # self.implicitly_wait(20)
@@ -21,7 +24,7 @@ class SoccerLeagues(webdriver.Chrome):
         options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
         # Used to instantiate the webdriver.chrome class so that the Booking will inherit all the methods.
-        super(SoccerLeagues, self).__init__(options=options)
+        super(PremierLeague, self).__init__(options=options)
         # gives the child a full access to parent class methods.
 
     def __exit__(self, exc_type, exc_value, exc_tb):
@@ -30,7 +33,7 @@ class SoccerLeagues(webdriver.Chrome):
 
     def league_homepage(self):
         # visit a homepage
-        self.get(const.LEAGUES_URL[0]['website'])
+        self.get(const.LEAGUES_URL[0]["website"])
 
     def accept_cookies(self):
         # handles cookies modal window. acccepts all cookies
@@ -42,18 +45,17 @@ class SoccerLeagues(webdriver.Chrome):
             cookies.click()
 
         except NoSuchElementException or ElementNotVisibleException or ElementNotInteractableException:
-            print('No such element.. ')
+            print("No such element.. ")
 
     def close_ads(self):
         # temporary pop up  for ads if the premier leagues wants to advertised something for users to click.
-
         try:
             add_tab = self.find_element_by_id("advertClose")
             add_tab.click()
-            print('Add button closed')
+            print("Add button closed")
 
         except ElementNotInteractableException or NoSuchElementException:
-            print('No ads dictated')
+            print("No ads dictated")
 
     # on the homepage, click on subnavigation bar contain tables.
     def premier_table(self):
@@ -65,13 +67,14 @@ class SoccerLeagues(webdriver.Chrome):
             # just incase we encouter ads again after loading premier league page.
             # self.close_ads()
         except NoSuchElementException:
-            self.get('https://www.premierleague.com/tables')
+            self.get("https://www.premierleague.com/tables")
 
     def filter_by_competition(self, competition_name):
         # filter by competition eg Premier League, FA Cup, UEFA Champions League
         try:
             competition_filter = self.find_element_by_css_selector(
-            'div[data-dropdown-block="FOOTBALL_COMPETITION"]')
+                'div[data-dropdown-block="FOOTBALL_COMPETITION"]'
+            )
 
             competition_filter.click()
         except NoSuchElementException:
@@ -79,11 +82,9 @@ class SoccerLeagues(webdriver.Chrome):
                 'div[aria-labelledby="dd-FOOTBALL_COMPETITION"]'
             )
         # # returns a list of `li` elements where role == options in
-        competition = self.find_elements(By.CSS_SELECTOR,
-                                         'li[role="option"]'
-                                         )
+        competition = self.find_elements(By.CSS_SELECTOR, 'li[role="option"]')
         for comp_name in competition:
-            if comp_name.get_attribute('innerHTML') == competition_name:
+            if comp_name.get_attribute("innerHTML") == competition_name:
                 comp_name.click()
                 break
             else:
@@ -91,8 +92,8 @@ class SoccerLeagues(webdriver.Chrome):
 
     def filter_by_season(self, season_name=None):
         # premier league seasons are in the following formats ==> 2012/13, 2013/14, 2020/21, 2021/22 [--> 2021 -2022]
-        # By default the bot will select the present seasons --> Manually fixed. 
-        
+        # By default the bot will select the present seasons --> Manually fixed.
+
         # first click the competition dropdown menu for seasons
         div_season_filter = self.find_element_by_css_selector(
             'div[data-dropdown-block="compSeasons"]'
@@ -101,18 +102,17 @@ class SoccerLeagues(webdriver.Chrome):
 
         # Then select ul element holding li elements containing seasons.
         ul_seasons = self.find_element_by_css_selector(
-            'ul[data-dropdown-list="compSeasons"]')
+            'ul[data-dropdown-list="compSeasons"]'
+        )
 
         # Now, find all elements in ul_seasons. returns a list
-        seasons = ul_seasons.find_elements(By.CSS_SELECTOR,
-                                           'li[role="option"]'
-                                           )
+        seasons = ul_seasons.find_elements(By.CSS_SELECTOR, 'li[role="option"]')
 
         # loop through the list and find the element whose innerHTML content corresponde to season_name
         for season in seasons:
             if season_name == None:
-                season_name == '2021/22'
-            if season.get_attribute('innerHTML') == season_name:
+                season_name == "2021/22"
+            if season.get_attribute("innerHTML") == season_name:
                 season.click()
                 # if the condition is met break out of the loop.
                 break
@@ -132,27 +132,20 @@ class SoccerLeagues(webdriver.Chrome):
         select_ul_element = self.find_element_by_css_selector(
             'ul[data-dropdown-list="homeaway"]'
         )
-        filters = select_ul_element.find_elements(
-            By.CSS_SELECTOR, 'li[role="option"]')
+        filters = select_ul_element.find_elements(By.CSS_SELECTOR, 'li[role="option"]')
 
         for filter in filters:
             if filter_criteria == None:
                 filter_criteria = "All Matches"
-                
-            if filter.get_attribute('innerHTML') == filter_criteria:
+
+            if filter.get_attribute("innerHTML") == filter_criteria:
                 filter.click()
                 break
             else:
                 continue
-            
+
     def league_table(self):
         table = LeagueTable(tables=self)
-        # table.league_table_head()
         data = table.league_table_body()
         LeagueTable.print_pretty_table(data[1])
         LeagueTable.write_to_csv(data[0])
-        
-        
-        
-        
-        
