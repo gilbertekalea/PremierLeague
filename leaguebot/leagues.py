@@ -7,10 +7,9 @@ from selenium.webdriver.common.by import By
 
 # This file contains method we will use to craw through the top leagues tables.
 
-
 class SoccerLeagues(webdriver.Chrome):
 
-    def __init__(self,  driver_path=r"C:\Users\gilbe\Desktop\workstation\projects\scrape\SeleniumDrivers", teardown=False):
+    def __init__(self,  driver_path=r"C:\Users\gilbe\Desktop\SeleniumDrivers", teardown=False):
         self.driver_path = driver_path
         self.teardown = teardown
         # self.implicitly_wait(20)
@@ -31,10 +30,9 @@ class SoccerLeagues(webdriver.Chrome):
 
     def league_homepage(self):
         # visit a homepage
-        self.get(const.PREMIER_LEAGUE_URL)
+        self.get(const.LEAGUES_URL[0]['website'])
 
     def accept_cookies(self):
-
         # handles cookies modal window. acccepts all cookies
         try:
             # if the cookies element exits and can be accessed.
@@ -149,9 +147,10 @@ class SoccerLeagues(webdriver.Chrome):
             
     def league_table(self):
         table = LeagueTable(tables=self)
-        # table.select_table_head()
-        data = table.select_table_body()
+        # table.league_table_head()
+        data = table.league_table_body()
         LeagueTable.print_pretty_table(data[1])
+        LeagueTable.write_to_csv(data[0])
         
         
         

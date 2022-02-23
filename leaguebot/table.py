@@ -1,16 +1,21 @@
+import csv
 from prettytable import PrettyTable
+import leaguebot.constants as const
 from selenium.common.exceptions import *
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 
-
 class LeagueTable:
+    '''
+    class of soccer league tables.
+    '''
+
     def __init__(self, tables: WebDriver):
         self.tables = tables
 
-    def select_table_head(self):
-        # This method is not really necessary if you know the table heads; See the method below where we have 
-        # curated the list of table headers. 
+    def league_table_head(self):
+        # This method is not really necessary if you know the table heads; See the method below where we have
+        # curated the list of table headers.
         abbreviated = ['More', 'Pos', 'Pl', 'W', 'D', 'L', 'Pts']
         headers = []
         selected_table = self.tables.find_element(
@@ -29,7 +34,7 @@ class LeagueTable:
                     # print(item.get_attribute('innerHTML'))
                     if item.get_attribute('innerHTML') in abbreviated or item.get_attribute('innerHMTL') == 'More':
                         continue
-                    
+
                     else:
                         element = item.get_attribute('innerHTML')
                         headers.append(element)
@@ -41,24 +46,29 @@ class LeagueTable:
                 if head.get_attribute('innerHTML') in abbreviated:
                     element = head.get_attribute('innerHTML')
                     headers.append(element)
-                    
+
         return headers
 
-    def select_table_body(self):
-        header = ['Position', 'Club', 'Played', 'Won', 'Drawn', 'Lost', 'GF','GA','GD', 'Points', 'Form','Next Game']
+    def league_table_body(self):
+        # Only for premier league;
+        # Handy picked, because using the above methos league_table_body was slowly.
+
+        table_header = ['Position', 'Club', 'Played', 'Won', 'Drawn',
+                        'Lost', 'GF', 'GA', 'GD', 'Points', 'Form', 'Next Game']
 
         body = self.tables.find_element(
             By.CSS_SELECTOR, 'tbody[class="tableBodyContainer isPL"]')
         rows = body.find_elements(
             By.CSS_SELECTOR, 'tr[data-filtered-entry-size="20"]')
-        
-        collection_list =[]
-        td_dict = []
+
+        # this list collects table data; used to print data on terminal using prettytable librart
+        collection_list = []
+        td_data = []  # wraps every scraped table row data in a list.
         for row in rows:
             td = row.find_elements(By.TAG_NAME, 'td')
             td_D = {}
-            collection =[]
-            header_index = 0
+            collection = []
+            header_index = 0  # tracks index for table_header list.
             for data in td:
                 if data.text == '':
                     continue
@@ -68,26 +78,32 @@ class LeagueTable:
                     for i in new_data:
                         form.append(i)
                     collection.append(form)
-                    
-                    td_D[header[header_index]] = form
-                    header_index+=1
+
+                    td_D[table_header[header_index]] = form
+                    header_index += 1
                 else:
-                    collection.append(data.text)    
-                    td_D[header[header_index]] = data.text 
-                    header_index+=1   
-            td_dict.append(td_D)
+                    collection.append(data.text)
+                    td_D[table_header[header_index]] = data.text
+                    header_index += 1
+            td_data.append(td_D)
             collection_list.append(collection)
-        return td_dict, collection_list
-        
+        return td_data, collection_list
+
     @staticmethod
     def print_pretty_table(collections):
         tab = PrettyTable()
         tab.field_names = ['Position', 'Club', 'Played', 'Won', 'Drawn',
-                                'Lost', 'GF', 'GA', 'GD', 'Points', 'Form', 'Next Game']
+                           'Lost', 'GF', 'GA', 'GD', 'Points', 'Form', 'Next Game']
         tab.add_rows(collections)
         print(tab)
-        # Todos ---> DONE!!!
-        #! Optimize the code by storing data in dictionary format.
-        # Create a dictionary for table values and headers
-        # Save data on csv
-        # Scrape more than one league, eg laliga, lique, and
+
+    @staticmethod
+    def write_to_csv(dictionary):
+        with open(f'data\{const.LEAGUES_URL[0]["league_name"]}.csv', 'w', newline='') as csvfile:
+            # with open('data\data.csv', 'w', newline='') as csvfile:
+            fieldnames = ['Position', 'Club', 'Played', 'Won', 'Drawn',
+                          'Lost', 'GF', 'GA', 'GD', 'Points', 'Form', 'Next Game']
+            table_writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            table_writer.writeheader()
+            for index, row in enumerate(dictionary):
+                table_writer.writerow(row)

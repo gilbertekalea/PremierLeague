@@ -1,6 +1,5 @@
 from leaguebot.leagues import SoccerLeagues
 
-
 with SoccerLeagues() as leaguebot:
     leaguebot.implicitly_wait(3)
     leaguebot.maximize_window()
