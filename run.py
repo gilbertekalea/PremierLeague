@@ -15,13 +15,13 @@ def scrape():
         bot.filter_by_home_or_away()
         bot.league_table()
 
-
-def view_premier(team_name) -> list:
+def view_premier(club_name) -> list:
     store_obj = []
 
     with open("table_data\English Premier League.csv", "r") as file:
         reader = csv.DictReader(file)
         for row in reader:
+            # create instance for each team.
             obj = PremierLeagueClub(
                 position=int(row["Position"]),
                 club=row["Club"],
@@ -37,7 +37,9 @@ def view_premier(team_name) -> list:
                 next_game=row["Next Game"],
             )
             store_obj.append(obj)
+
     for item in store_obj:
-        if item.club == team_name:
+        if item.club == club_name:
             obj = item
-    return obj
+    return obj.get_win_draw_lost_rate
+
