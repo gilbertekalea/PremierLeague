@@ -1,21 +1,21 @@
 Position,Club,Played,Won,Drawn,Lost,GF,GA,GD,Points,Form,Next Game
 1,Manchester City,26,20,3,3,63,17,+46,63,"['W', 'D', 'W', 'W', 'L']",Everton
-2,Liverpool,25,17,6,2,64,20,+44,57,"['W', 'W', 'W', 'W', 'W']",Leeds United
+2,Liverpool,26,18,6,2,70,20,+50,60,"['W', 'W', 'W', 'W', 'W']",West Ham United
 3,Chelsea,25,14,8,3,49,18,+31,50,"['D', 'L', 'D', 'W', 'W']",Burnley
 4,Manchester United,26,13,7,6,44,34,+10,46,"['W', 'D', 'D', 'W', 'W']",Watford
 5,West Ham United,26,12,6,8,45,34,+11,42,"['L', 'L', 'W', 'D', 'D']",Wolverhampton Wanderers
 6,Arsenal,23,13,3,7,36,26,+10,42,"['W', 'L', 'D', 'W', 'W']",Wolverhampton Wanderers
 7,Wolverhampton Wanderers,24,12,4,8,23,18,+5,40,"['W', 'W', 'L', 'W', 'W']",Arsenal
-8,Tottenham Hotspur,23,12,3,8,31,31,0,39,"['W', 'L', 'L', 'L', 'W']",Burnley
+8,Tottenham Hotspur,24,12,3,9,31,32,-1,39,"['L', 'L', 'L', 'W', 'L']",Leeds United
 9,Brighton and Hove Albion,25,7,12,6,25,28,-3,33,"['D', 'D', 'W', 'L', 'L']",Aston Villa
 10,Southampton,25,7,11,7,32,37,-5,32,"['L', 'D', 'W', 'D', 'W']",Norwich City
-11,Leicester City,23,7,6,10,37,43,-6,27,"['L', 'D', 'L', 'D', 'L']",Burnley
-12,Aston Villa,24,8,3,13,31,37,-6,27,"['D', 'W', 'D', 'L', 'L']",Brighton and Hove Albion
-13,Crystal Palace,25,5,11,9,32,36,-4,26,"['D', 'L', 'D', 'D', 'L']",Watford
+11,Crystal Palace,26,6,11,9,36,37,-1,29,"['L', 'D', 'D', 'L', 'W']",Burnley
+12,Leicester City,23,7,6,10,37,43,-6,27,"['L', 'D', 'L', 'D', 'L']",Burnley
+13,Aston Villa,24,8,3,13,31,37,-6,27,"['D', 'W', 'D', 'L', 'L']",Brighton and Hove Albion
 14,Brentford,26,6,6,14,27,42,-15,24,"['L', 'L', 'L', 'D', 'L']",Newcastle United
-15,Leeds United,24,5,8,11,29,50,-21,23,"['W', 'L', 'D', 'L', 'L']",Liverpool
+15,Leeds United,25,5,8,12,29,56,-27,23,"['L', 'D', 'L', 'L', 'L']",Tottenham Hotspur
 16,Everton,23,6,4,13,28,40,-12,22,"['L', 'L', 'L', 'W', 'L']",Manchester City
 17,Newcastle United,24,4,10,10,26,45,-19,22,"['D', 'W', 'W', 'W', 'D']",Brentford
-18,Watford,24,5,3,16,24,43,-19,18,"['L', 'D', 'L', 'L', 'W']",Crystal Palace
-19,Burnley,22,2,11,9,20,29,-9,17,"['D', 'D', 'D', 'L', 'W']",Tottenham Hotspur
+18,Burnley,23,3,11,9,21,29,-8,20,"['D', 'D', 'L', 'W', 'W']",Crystal Palace
+19,Watford,25,5,3,17,25,47,-22,18,"['D', 'L', 'L', 'W', 'L']",Manchester United
 20,Norwich City,25,4,5,16,15,53,-38,17,"['W', 'W', 'D', 'L', 'L']",Southampton

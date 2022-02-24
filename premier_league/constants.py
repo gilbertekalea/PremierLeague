@@ -5,4 +5,4 @@ LEAGUES_URL = [
     }
 ]
 
-print('running:', LEAGUES_URL[0]["website"])
+print("running:", LEAGUES_URL[0]["website"])

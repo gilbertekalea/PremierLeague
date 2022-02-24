@@ -1,3 +1,7 @@
+# Author: Gilbert Ekale Amoding
+
+# This file contains methods that will be used to navigate the premierleague.com website, to retrieve table data.
+
 import premier_league.constants as const
 from premier_league.table import LeagueTable
 
@@ -6,10 +10,8 @@ from selenium import webdriver
 from selenium.common.exceptions import *
 from selenium.webdriver.common.by import By
 
-# This file contains method we will use to craw through the top leagues tables.
 
 class PremierLeague(webdriver.Chrome):
-    
     def __init__(
         self, driver_path=r"C:\Users\gilbe\Desktop\SeleniumDrivers", teardown=True
     ):

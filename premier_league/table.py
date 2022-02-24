@@ -8,13 +8,15 @@ from selenium.webdriver.common.by import By
 
 class LeagueTable:
     """
-    class of soccer league tables.
+    class to scrape premier league table data.
+
+    param: WebDriver
     """
 
     def __init__(self, tables: WebDriver):
         self.tables = tables
 
-    def league_table_head(self):
+    def league_table_head(self) -> list:
         # This method is not really necessary if you know the table heads; See the method below where we have
         # curated the list of table headers.
         abbreviated = ["More", "Pos", "Pl", "W", "D", "L", "Pts"]
@@ -34,7 +36,8 @@ class LeagueTable:
 
             if elements_with_div:
                 for item in elements_with_div:
-                    # print(item.get_attribute('innerHTML'))
+
+                    # ignore abbreaviated values such a pos, pl, w etc.
                     if (
                         item.get_attribute("innerHTML") in abbreviated
                         or item.get_attribute("innerHMTL") == "More"
@@ -55,7 +58,7 @@ class LeagueTable:
 
         return headers
 
-    def league_table_body(self):
+    def league_table_body(self) -> tuple:
         # Only for premier league;
         # Handy picked, because using the above method league_table_body was slow.
 
@@ -108,7 +111,10 @@ class LeagueTable:
         return td_data, collection_list
 
     @staticmethod
-    def print_pretty_table(collections):
+    def print_pretty_table(collections) -> None:
+        """
+        This function prints the premier league table on terminal using pretty tables module.
+        """
         tab = PrettyTable()
         tab.field_names = [
             "Position",
@@ -128,11 +134,11 @@ class LeagueTable:
         print(tab)
 
     @staticmethod
-    def write_to_csv(dictionary):
+    def write_to_csv(dictionary) -> None:
         with open(
             f'table_data\{const.LEAGUES_URL[0]["league_name"]}.csv', "w", newline=""
         ) as csvfile:
-            # with open('data\data.csv', 'w', newline='') as csvfile:
+
             fieldnames = [
                 "Position",
                 "Club",
