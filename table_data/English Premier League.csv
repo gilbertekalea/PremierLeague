@@ -1,21 +1,21 @@
 Position,Club,Played,Won,Drawn,Lost,GF,GA,GD,Points,Form,Next Game
-1,Manchester City,26,20,3,3,63,17,+46,63,"['W', 'D', 'W', 'W', 'L']",Everton
-2,Liverpool,26,18,6,2,70,20,+50,60,"['W', 'W', 'W', 'W', 'W']",West Ham United
-3,Chelsea,25,14,8,3,49,18,+31,50,"['D', 'L', 'D', 'W', 'W']",Burnley
-4,Manchester United,26,13,7,6,44,34,+10,46,"['W', 'D', 'D', 'W', 'W']",Watford
-5,West Ham United,26,12,6,8,45,34,+11,42,"['L', 'L', 'W', 'D', 'D']",Wolverhampton Wanderers
-6,Arsenal,23,13,3,7,36,26,+10,42,"['W', 'L', 'D', 'W', 'W']",Wolverhampton Wanderers
-7,Wolverhampton Wanderers,24,12,4,8,23,18,+5,40,"['W', 'W', 'L', 'W', 'W']",Arsenal
-8,Tottenham Hotspur,24,12,3,9,31,32,-1,39,"['L', 'L', 'L', 'W', 'L']",Leeds United
-9,Brighton and Hove Albion,25,7,12,6,25,28,-3,33,"['D', 'D', 'W', 'L', 'L']",Aston Villa
-10,Southampton,25,7,11,7,32,37,-5,32,"['L', 'D', 'W', 'D', 'W']",Norwich City
-11,Crystal Palace,26,6,11,9,36,37,-1,29,"['L', 'D', 'D', 'L', 'W']",Burnley
-12,Leicester City,23,7,6,10,37,43,-6,27,"['L', 'D', 'L', 'D', 'L']",Burnley
-13,Aston Villa,24,8,3,13,31,37,-6,27,"['D', 'W', 'D', 'L', 'L']",Brighton and Hove Albion
-14,Brentford,26,6,6,14,27,42,-15,24,"['L', 'L', 'L', 'D', 'L']",Newcastle United
-15,Leeds United,25,5,8,12,29,56,-27,23,"['L', 'D', 'L', 'L', 'L']",Tottenham Hotspur
-16,Everton,23,6,4,13,28,40,-12,22,"['L', 'L', 'L', 'W', 'L']",Manchester City
-17,Newcastle United,24,4,10,10,26,45,-19,22,"['D', 'W', 'W', 'W', 'D']",Brentford
-18,Burnley,23,3,11,9,21,29,-8,20,"['D', 'D', 'L', 'W', 'W']",Crystal Palace
-19,Watford,25,5,3,17,25,47,-22,18,"['D', 'L', 'L', 'W', 'L']",Manchester United
-20,Norwich City,25,4,5,16,15,53,-38,17,"['W', 'W', 'D', 'L', 'L']",Southampton
+1,Manchester City,27,21,3,3,64,17,47,66,"['D', 'W', 'W', 'L', 'W']","['Sunday 6 March 2022', 'MCI', '11:30', 'MUN']"
+2,Liverpool,26,18,6,2,70,20,50,60,"['W', 'W', 'W', 'W', 'W']","['Saturday 5 March 2022', 'LIV', '12:30', 'WHU']"
+3,Chelsea,25,14,8,3,49,18,31,50,"['D', 'L', 'D', 'W', 'W']","['Saturday 5 March 2022', 'BUR', '10:00', 'CHE']"
+4,Manchester United,27,13,8,6,44,34,10,47,"['D', 'D', 'W', 'W', 'D']","['Sunday 6 March 2022', 'MCI', '11:30', 'MUN']"
+5,West Ham United,27,13,6,8,46,34,12,45,"['L', 'W', 'D', 'D', 'W']","['Saturday 5 March 2022', 'LIV', '12:30', 'WHU']"
+6,Arsenal,24,14,3,7,38,27,11,45,"['L', 'D', 'W', 'W', 'W']","['Sunday 6 March 2022', 'WAT', '09:00', 'ARS']"
+7,Tottenham Hotspur,25,13,3,9,35,32,3,42,"['L', 'L', 'W', 'L', 'W']","['Monday 7 March 2022', 'TOT', '15:00', 'EVE']"
+8,Wolverhampton Wanderers,26,12,4,10,24,21,3,40,"['L', 'W', 'W', 'L', 'L']","['Saturday 5 March 2022', 'WOL', '10:00', 'CRY']"
+9,Southampton,26,8,11,7,34,37,-3,35,"['D', 'W', 'D', 'W', 'W']","['Saturday 5 March 2022', 'AVL', '10:00', 'SOU']"
+10,Brighton and Hove Albion,26,7,12,7,25,30,-5,33,"['D', 'W', 'L', 'L', 'L']","['Saturday 5 March 2022', 'NEW', '10:00', 'BHA']"
+11,Crystal Palace,27,6,12,9,37,38,-1,30,"['D', 'D', 'L', 'W', 'D']","['Saturday 5 March 2022', 'WOL', '10:00', 'CRY']"
+12,Aston Villa,25,9,3,13,33,37,-4,30,"['W', 'D', 'L', 'L', 'W']","['Saturday 5 March 2022', 'AVL', '10:00', 'SOU']"
+13,Leicester City,23,7,6,10,37,43,-6,27,"['L', 'D', 'L', 'D', 'L']","['Saturday 5 March 2022', 'LEI', '07:30', 'LEE']"
+14,Newcastle United,25,5,10,10,28,45,-17,25,"['W', 'W', 'W', 'D', 'W']","['Saturday 5 March 2022', 'NEW', '10:00', 'BHA']"
+15,Brentford,27,6,6,15,27,44,-17,24,"['L', 'L', 'D', 'L', 'L']","['Saturday 5 March 2022', 'NOR', '10:00', 'BRE']"
+16,Leeds United,26,5,8,13,29,60,-31,23,"['D', 'L', 'L', 'L', 'L']","['Saturday 5 March 2022', 'LEI', '07:30', 'LEE']"
+17,Everton,24,6,4,14,28,41,-13,22,"['L', 'L', 'W', 'L', 'L']","['Monday 7 March 2022', 'TOT', '15:00', 'EVE']"
+18,Burnley,24,3,12,9,22,30,-8,21,"['D', 'L', 'W', 'W', 'D']","['Saturday 5 March 2022', 'BUR', '10:00', 'CHE']"
+19,Watford,26,5,4,17,25,47,-22,19,"['L', 'L', 'W', 'L', 'D']","['Sunday 6 March 2022', 'WAT', '09:00', 'ARS']"
+20,Norwich City,26,4,5,17,15,55,-40,17,"['W', 'D', 'L', 'L', 'L']","['Saturday 5 March 2022', 'NOR', '10:00', 'BRE']"

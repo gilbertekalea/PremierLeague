@@ -6,3 +6,18 @@ LEAGUES_URL = [
 ]
 
 print("running:", LEAGUES_URL[0]["website"])
+
+PREMIER_LEAGUE_TABLE_HEADERS = [
+    "Position",
+    "Club",
+    "Played",
+    "Won",
+    "Drawn",
+    "Lost",
+    "GF",
+    "GA",
+    "GD",
+    "Points",
+    "Form",
+    "Next Game"
+]
