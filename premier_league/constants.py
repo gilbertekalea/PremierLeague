@@ -19,5 +19,5 @@ PREMIER_LEAGUE_TABLE_HEADERS = [
     "GD",
     "Points",
     "Form",
-    "Next Game"
+    "Next Game",
 ]

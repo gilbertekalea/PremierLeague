@@ -14,6 +14,7 @@ class LeagueTable:
 
     param: WebDrive
     """
+
     def __init__(self, table: WebDriver):
         self.table = table
 
@@ -62,50 +63,37 @@ class LeagueTable:
                     headers.append(element)
 
         return headers
-    
+
     def league_table_body(self) -> tuple:
         """
         focus in the table body; perform different actions to collect the table data.
         """
         # premier league table data
         table_header = const.PREMIER_LEAGUE_TABLE_HEADERS
+        pl_table = self.table.find_element(By.TAG_NAME, "table")
 
-        try:
-            body = self.table.find_element(By.CSS_SELECTOR, 'tbody[class="tableBodyContainer isPL"]')
-
-        except NoSuchElementException or ElementClickInterceptedException:
-            pass
-
-        try:
-            body  = self.table.find_element(By.CSS_SELECTOR, 'tbody[class="tableBodyContainer"]')
-
-
-        except NoSuchElementException or ElementNotInteractableException:
-            pass
-        
-        # table rows
-        
+        body = pl_table.find_element(By.TAG_NAME, "tbody")
         rows = body.find_elements(By.CSS_SELECTOR, 'tr[data-filtered-entry-size="20"]')
 
-       
-        # stores club last five game form -> [W, L,D,L,W]
+        # Wrapper for printing table on the terminal
         data_pretty_table = []
 
         # Wraps rows td data
         td_data = []
-
         for row in rows:
             td = row.find_elements(By.TAG_NAME, "td")
 
-            # We want to use hovering action like;for next_game header; This action will help us to collect
-            # Extra information about the next_game; Time, dates, and location.
+            # We want to use hovering action ;for next_game header; This action will help us to collect
+            # Extra information about the next_game; such time, dates, and competing teams.
 
             # create action for hovering
             hover = ActionChains(self.table)
 
             # select element to perform hovering action'
             try:
-                obj = row.find_element(By.CSS_SELECTOR, 'td[class="nextMatchCol hideMed"]')
+                obj = row.find_element(
+                    By.CSS_SELECTOR, 'td[class="nextMatchCol hideMed"]'
+                )
 
                 # perform the action
                 hover.move_to_element(obj).perform()
@@ -113,15 +101,15 @@ class LeagueTable:
             except NoSuchElementException:
                 pass
             finally:
-               pass
-        
+                pass
+
             td_D = {}
             club_form = []
-            header_index = 0  # tracks index for table_header list. 
+            header_index = 0  # tracks index for table_header list.
             for data in td:
-                if data.text == '':
+                if data.text == "":
                     continue
-                
+
                 if "\n" in data.text:
                     new_data = data.text.split("\n")
                     form = []
@@ -129,15 +117,16 @@ class LeagueTable:
                         form.append(i)
                     club_form.append(form)
                     td_D[table_header[header_index]] = form
-                    header_index+=1
+                    header_index += 1
+
                 else:
                     # for pretty_table
                     club_form.append(data.text)
-                    
-                    # for csv 
+
+                    # for csv
                     td_D[table_header[header_index]] = data.text
-                    header_index+=1
-        
+                    header_index += 1
+
             td_data.append(td_D)
             data_pretty_table.append(club_form)
         return td_data, data_pretty_table
@@ -150,11 +139,12 @@ class LeagueTable:
         tab = PrettyTable()
         tab.field_names = const.PREMIER_LEAGUE_TABLE_HEADERS
         tab.add_rows(collections)
-        
+
         print(tab)
-        
+
     @staticmethod
     def write_to_csv(dictionary) -> None:
+
         with open(
             f'table_data\{const.LEAGUES_URL[0]["league_name"]}.csv', "w", newline=""
         ) as csvfile:
