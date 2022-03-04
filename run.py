@@ -1,8 +1,8 @@
 from unicodedata import name
 from premier_league.starting_point import BotStartingPoint
-from premier_league.report import PremierLeagueClub
+from premier_league.filters import PremierLeagueTableFilter
+from premier_league.current_report import PremierLeagueClub
 import time
-
 
 def scrape():
     with BotStartingPoint() as bot:
@@ -11,11 +11,6 @@ def scrape():
         bot.premier_league_homepage()
         bot.accept_cookies()
         bot.premier_league_table()
-        bot.filter_by_competition()
-        bot.filter_by_season(input("Enter Season: "))
-        bot.filter_by_home_or_away(input("Enter Home | Away | All Matches: "))
-
-        bot.close_live_button()
         time.sleep(5)
         bot.league_table()
 

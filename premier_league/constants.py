@@ -1,3 +1,5 @@
+# Author: Gilbert Ekale Amoding
+
 LEAGUES_URL = [
     {
         "league_name": "English Premier League",
@@ -20,4 +22,18 @@ PREMIER_LEAGUE_TABLE_HEADERS = [
     "Points",
     "Form",
     "Next Game",
+]
+
+PREMIER_LEAGUE_PAST_SEASON_TABLE_HEADERS = [
+    "Position",
+    "Club",
+    "Played",
+    "Won",
+    "Drawn",
+    "Lost",
+    "GF",
+    "GA",
+    "GD",
+    "Points",
+    "Form",
 ]

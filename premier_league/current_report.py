@@ -6,9 +6,8 @@ from dataclasses import dataclass
 import ast, csv, time
 from prettytable import PrettyTable
 
-
 @dataclass
-class PremierLeagueTableHeader:
+class CurrentPremierLeagueTableHeader:
     position: str
     club: str
     played: int
@@ -22,8 +21,21 @@ class PremierLeagueTableHeader:
     form: list
     next_game: list
 
+@dataclass
+class PastPremierLeagueTableHeader:
+    position: str
+    club: str
+    played: int
+    won: int
+    drawn: int
+    lost: int
+    gf: int
+    ga: int
+    gd: int
+    points: int
+    form: list
 
-class PremierLeagueClub(PremierLeagueTableHeader):
+class PremierLeagueClub(CurrentPremierLeagueTableHeader):
     """ """
 
     def get_next_game(self) -> PrettyTable():
@@ -121,7 +133,7 @@ class PremierLeagueClub(PremierLeagueTableHeader):
                     "Loose rate",
                 ]
                 other_table.add_row(wdl)
-                
+
                 # where pretty table magic happens
                 print(
                     f"{self.club.upper()} WIN, DRAW & LOOSE RATE AFTER {self.played} GAMES"
@@ -143,12 +155,12 @@ class PremierLeagueClub(PremierLeagueTableHeader):
     @staticmethod
     def create_premier_clubs() -> list:
         """
-        Functions reads through a csv file, instantiate `PremierLeagueClub` class.
+        Function to read through a csv file, instantiate `PremierLeagueClub` class.
         It's stores object created in a list.
         returns a list of objects.
         """
         store_obj = []
-
+        
         # read the csv
         with open("table_data\English Premier League.csv", "r") as file:
             reader = csv.DictReader(file)

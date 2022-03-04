@@ -1,3 +1,5 @@
+# Author: Gilbert Ekale Amoding.
+
 import csv
 from prettytable import PrettyTable
 import premier_league.constants as const
@@ -7,14 +9,11 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 
-
-class LeagueTable:
+class CurrentLeagueTable:
     """
     A class to scrape the premier league table
-
     param: WebDrive
     """
-
     def __init__(self, table: WebDriver):
         self.table = table
 
