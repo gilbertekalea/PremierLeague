@@ -1,6 +1,6 @@
 
 ## **Scraping Bot for English Premier League**
-[English Premier League]('https://www.premierleague.com/') 
+[English Premier League](https://www.premierleague.com/) 
 
 The Premier League, also known exonymously as the English Premier League or the EPL, is the top level of the English football league system. Contested by 20 clubs, it operates on a system of promotion and relegation with the English Football League. Seasons run from August to May with each team playing 38 matches.
 
@@ -32,7 +32,7 @@ For window users: Open windows terminal and open project directory, then.
 ## **Drivers**
 Selenium requires a driver to interface with the chosen browser. Firefox, for example, requires geckodriver, which needs to be installed before the below examples can be run. Make sure it’s in your PATH, e. g., place it in /usr/bin or /usr/local/bin.
 
-Read more about webdrivers here [Selenium Installation]('https://pypi.org/project/selenium/') and [Selenium Official documentation]('https://www.selenium.dev/documentation/webdriver/')
+Read more about webdrivers here [Selenium Installation](https://pypi.org/project/selenium/) and [Selenium Official documentation](https://www.selenium.dev/documentation/webdriver/)
 
 
 ## **Downloading WebDriver**
@@ -40,13 +40,13 @@ This project uses chromedriver. I understand that you're using a different brows
 
 Here are download links for most popular browsers. 
 
-[Chrome]('https://chromedriver.chromium.org/downloads')
+[Chrome](https://chromedriver.chromium.org/downloads)
 
-[Firefox]('https://github.com/mozilla/geckodriver/releases')
+[Firefox](https://github.com/mozilla/geckodriver/releases)
 
-[Edge]('https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/')
+[Edge](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)
 
-[Safari]('https://webkit.org/blog/6900/webdriver-support-in-safari-10/')
+[Safari](https://webkit.org/blog/6900/webdriver-support-in-safari-10/)
 
 Once you download your prefered driver; You can either save the .exe file in your project folder or you can save it somewhere in the your computer and provide the path. I recommend you use save it in a different folder within the project folder or somewhere in your computer and use system path methods to access it. 
 
