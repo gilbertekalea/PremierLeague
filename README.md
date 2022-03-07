@@ -5,16 +5,16 @@
 The Premier League, also known exonymously as the English Premier League or the EPL, is the top level of the English football league system. Contested by 20 clubs, it operates on a system of promotion and relegation with the English Football League. Seasons run from August to May with each team playing 38 matches.
 
 ## **Description**
-Premier League bot is a scraping bot built with *selenium* and *python*. The project is structure in two components.
+Premier League crawler is a scraping bot built with *selenium* and *python*. The project is structured in two components.
 
 ## **Scraping component**
-Contain methods that allow the bot crawl the premier league website and collects current/past season table data. Then, stores the data in a csv file. 
+Contain methods that allow the bot to crawl the premier league website and collects current/past season table data. Then, stores the data in a csv file. 
 
 ## **Data manipulation component**
-Containt methods to perform retrieving data from the csv file and display it on the terminal, contain also methods for performing basic statistical analysis such as determining teams current win-draw-lose rate. 
+Contain methods to perform and retrieving data from the csv file and display it on the terminal, also contain methods for performing basic statistical analysis such as determining teams current win-draw-lose rate. 
 
 ## **Motivation**
-The motivation behind this project was to improve my web scraping skills. I choose premier league because I love soccer and I am passionate about it. Also, the website is dynamic with lots of javascript which make it even harder to scrape it with standard libraries such as *BeautifulSoup*. By doing this project, it allow me to emphasis advanced technique of scraping modern websites. 
+The motivation behind this project was to improve my web scraping skills. I choose premier league because I love soccer and I am passionate about it. Also, the website is dynamic with lots of javascript which make it even harder to scrape it with standard libraries such as *BeautifulSoup*. By doing this project, it allow me to imprve my knowledge and understanding on advanced technique on web automation tools such as selenium. 
 
 ## **Technology Used**
 
@@ -23,7 +23,9 @@ The motivation behind this project was to improve my web scraping skills. I choo
 
 ## **Installation**
 In order for this project to work in your computer; You need to have a selenium and python installed in your computer. 
-I assume if you are interested in this project,you have already know the basics of python and you have python installed. 
+I assume if you are interested in this project,you already know the basics of python and you have python installed. 
+
+**Note**: If you know how to install selenium and configure it using other operating systems please feel free to contribute to this project. 
 
 For window users: Open windows terminal and open project directory, then.
 
@@ -48,7 +50,7 @@ Here are download links for most popular browsers.
 
 [Safari](https://webkit.org/blog/6900/webdriver-support-in-safari-10/)
 
-Once you download your prefered driver; You can either save the .exe file in your project folder or you can save it somewhere in the your computer and provide the path. I recommend you use save it in a different folder within the project folder or somewhere in your computer and use system path methods to access it. 
+Once you download your prefered driver; You can either save the .exe file in your project folder or you can save it somewhere in the your computer and provide the path. I recommend you save it in a different folder within the project folder or somewhere in your computer and use system path methods to access it. 
 
 Here are the files you need to change; Go to *starting_point.py* in *premier_league* folder/module. Go to class *BotStartingPoint* and change the webdriver.chrome to web driver of your choice. Then change the driver_path paramenter equals to the path where your webdriver is stored. 
 
@@ -85,31 +87,32 @@ Next, start the bot:
 
     >>> run.start_scraping()
 
-The bot will wake up and print out the starting url. The it will automatically open a new browser window. Check your windows terminal; The bot will prompt you to enter which season you want to scrape data from: Basically the bot wants to know if you are interested to scrape past seasons table or current season. This is because the table structure for current and past seasons are quite different. So there are different methods to scrape the data. You can type C for current season or P for past seasons. 
+The bot will wake up and print out the starting url. The it will automatically open a new browser window. Check your windows terminal; The bot will prompt you to enter which season you want to scrape data from: Basically the bot wants to know if you are interested to scrape past seasons table or current season. This is because the table structure for current and past seasons are quite different. So there are different methods to scrape the data. You can type **C for current season or P for past seasons**. 
 
 **Note**
-If you select C who the bot will automatically select the '2021/22' season. If you select P, you will be prompted to enter the season itself. Please refer to premier league season naming format: here is example, if you want to scrape data for 
-2013 season, the format will be 2013/14, meaning that the season started on August 2013 and it goes through to may 2014. The 2014 seasons starts on August 2014 and ends on may 2015, the season format will be 2014/15. 
+If you select C who the bot will automatically select the '2021/22' season. If you select P, you will be prompted to enter the season itself. Please refer to premier league season naming format: here is example, if you want to scrape data for 2013 season, the format will be 2013/14, meaning that the season started on August 2013 and it goes and ends on may 2014. The 2014 seasons starts on August 2014 and ends on may 2015, the season format will be 2014/15. 
 
     >>> Current Season or Past? C | P : 
 
 If you choose C  or P, you will be prompted to choose which type of data you would like to scrape;
 
-Home - Only games played at home for each team
+*Home - Only games played at home for each team.*
 
-Away - Only matches played for away for each team.
+*Away - Only matches played for away for each team.*
 
-All Matches - Scrapes all table data for both home and away. 
+*All Matches - Scrapes all table data for both home and away.*
 
     >>> Enter Home | Away | All Matches: 
 
-The bot will start now collecting data for you and saves this data in csv file.
+The bot will start now collecting data for you and saves this data in csv file and the bot will stop scraping and closes the browser.
 
 ## **Basic Stistical Analysis**
 
 The next step is do some basic operations about the data you have collected.
 
-To perform this operations  call view_premier(team_name) function.  This function receives a paramenter team_name which represents the name of the team you are interested in. Then it goes through csv file and creates instance of each team and returns object where the team_name matches. 
+To perform this operations  call *view_premier(team_name)* function.  This function receives a paramenter *team_name* which represents the name of the team you are interested in. Then it goes through csv file and creates instance of each team and returns object where the team_name matches obj.club.
+
+*Note: Make sure you have typed correctly the name of the team.*
 
     >>> obj = run.view_premier('Manchester United')
 
