@@ -85,22 +85,22 @@ class PastLeagueTable:
             # We want to use hovering action ;for next_game header; This action will help us to collect
             # Extra information about the next_game; such time, dates, and competing teams.
 
-            # create action for hovering
+            # # create action for hovering
             # hover = ActionChains(self.past_table)
 
-            # select element to perform hovering action'
+            # # select element to perform hovering action'
             # try:
-                # obj = row.find_element(
-                    # By.CSS_SELECTOR, 'td[class="nextMatchCol hideMed"]'
-                # )
+            #     obj = row.find_element(
+            #         By.CSS_SELECTOR, 'td[class="nextMatchCol hideMed"]'
+            #     )
 
-                # perform the action
-                # hover.move_to_element(obj).perform()
+            #     # perform the action
+            #     hover.move_to_element(obj).perform()
 
             # except NoSuchElementException:
-                # pass
+            #     pass
             # finally:
-                # pass
+            #     pass
 
             td_D = {}
             club_form = []
@@ -140,6 +140,7 @@ class PastLeagueTable:
         tab.add_rows(collections)
 
         print(tab)
+        
     @staticmethod
     def write_to_csv(dictionary) -> None:
         with open(

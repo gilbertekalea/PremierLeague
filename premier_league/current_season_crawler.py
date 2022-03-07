@@ -16,7 +16,8 @@ class CurrentLeagueTable:
     """
     def __init__(self, table: WebDriver):
         self.table = table
-
+    def close_live_button_if(self):
+        pass
     def league_table_head(self) -> list:
         """
         Takes a web element as a parameters, and scrapes the premier league table headers.

@@ -53,7 +53,10 @@ class BotStartingPoint(webdriver.Chrome):
             print("No cookies available")
 
     def close_ads(self) -> None:
-        # temporary pop up  for ads if the premier leagues wants to advertised something for users to click.
+        '''
+        Sometimes the website displays ads for voting or promoting events. this function looks up for this element ; if it's available 
+        it closes. 
+        '''
         try:
             add_tab = self.find_element_by_id("advertClose")
             add_tab.click()
@@ -75,13 +78,17 @@ class BotStartingPoint(webdriver.Chrome):
 
     # All the preliminary steps are done. The bot is ready to focus on the table and scrape datae.
     def league_table(self) -> None:
+        '''
+        Prompt users to enter which season they want to scrape data from. 
+        The table for current season and past seasons are quite different. 
+        '''
         filtration = PremierLeagueTableFilter(filters=self)
-       
         season = input('Current Season or Past? C | P : ')
         if season == 'C' or season == 'c':
             filtration.filter_by_competition()
             filtration.filter_by_season('2021/22')
             filtration.filter_by_home_or_away(input("Enter Home | Away | All Matches: "))
+            filtration.close_live_button()
             table = CurrentLeagueTable(table=self)
             data = table.league_table_body()
             CurrentLeagueTable.write_to_csv(data[0])
